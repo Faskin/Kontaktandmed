@@ -55,10 +55,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(168, 180);
+            this.dataGridView1.Location = new System.Drawing.Point(164, 179);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(620, 259);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btn_new
             // 
@@ -80,7 +81,7 @@
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(138, 59);
             this.btn_delete.TabIndex = 2;
-            this.btn_delete.Text = "Muuda";
+            this.btn_delete.Text = "Kustuta";
             this.btn_delete.UseVisualStyleBackColor = false;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
@@ -92,8 +93,9 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(138, 59);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Kustuta";
+            this.button3.Text = "Muuda";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 

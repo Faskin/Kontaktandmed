@@ -14,7 +14,7 @@ namespace Kontaktandmed
 {
     public partial class Form1 : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane\source\repos\Kontaktandmed\Appdata\Ryhm.mdf;Integrated Security=True");
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\4itia\Source\Repos\Faskin\Kontaktandmed\Appdata\Ryhm.mdf;Integrated Security=True");
         SqlCommand command;
         SqlDataAdapter adapter, adapter2;
         string searchValue = "somestring";
@@ -25,7 +25,9 @@ namespace Kontaktandmed
         {
 
             InitializeComponent();
+            LoadData();
             DisplayData();
+
             /*foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Cells[1].Value.ToString().Equals(searchValue))
@@ -45,6 +47,19 @@ namespace Kontaktandmed
             emailtxt.Text = "";
 
         }
+
+        private void LoadData()
+        {
+            connect.Open();
+            string query = "SELECT *FROM TARpv19 ORDER BY Id";
+            adapter = new SqlDataAdapter(query, connect);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            dataGridView1.DataSource = table;
+            connect.Close();
+        }
+
+
         private void btn_new_Click(object sender, EventArgs e)
         {
             if (Nimitxt.Text != "" && Teltxt.Text != "" && emailtxt.Text != "")
@@ -65,6 +80,7 @@ namespace Kontaktandmed
                     ClearData();
                     MessageBox.Show("Andmed on lisatud");
                 }
+
                 catch (Exception)
                 {
 
@@ -94,6 +110,27 @@ namespace Kontaktandmed
             else
             {
                 MessageBox.Show("Viga kustutamisega");
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(Nimitxt.Text != "" && Teltxt.Text != "" && emailtxt.Text != "")
+            {
+                command = new SqlCommand("UPDATE TAR SET Nimi=@nimi,Eesnimi=@ees,Foto=@foto,Telefon=@tel,Gmail=@gm WHERE Id=@id", connect);
+                connect.Open();
+                command.Parameters.AddWithValue("@id", Id);
+                command.Parameters.AddWithValue("@nimi", Nimitxt.Text);
+                command.Parameters.AddWithValue("@pilt", Teltxt.Text);
+                command.Parameters.AddWithValue("@tel", Teltxt.Text);
+                command.Parameters.AddWithValue("@email", emailtxt.Text);
+                string file_pilt = Nimitxt.Text + ".jpg";
+
             }
         }
 
