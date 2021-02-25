@@ -57,6 +57,8 @@ namespace Kontaktandmed
                 EnableSsl = true
             };
             mail.From = new MailAddress("faskin2002@gmail.com ");
+            }
         }
     }
 }
+
