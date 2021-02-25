@@ -14,11 +14,12 @@ namespace Kontaktandmed
 {
     public partial class Form1 : Form
     {
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\4itia\Source\Repos\Faskin\Kontaktandmed\Appdata\Ryhm.mdf;Integrated Security=True");
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane\source\repos\Faskin\Kontaktandmed\Appdata\Ryhm.mdf;Integrated Security=True");
         SqlCommand command;
         SqlDataAdapter adapter, adapter2;
         string searchValue = "somestring";
         int rowIndex = -1;
+        Form2 form2 = new Form2();
 
         int Id = 0;
         public Form1()
@@ -134,6 +135,13 @@ namespace Kontaktandmed
             }
         }
 
+
+        private void email_btn_Click(object sender, EventArgs e)
+        {
+            form2.Show();
+
+        }
+
         private void DisplayData()
         {
             connect.Open();
@@ -142,7 +150,7 @@ namespace Kontaktandmed
             adapter.Fill(tabel);
             dataGridView1.DataSource = tabel;
 
-
+            
             connect.Close();
         }
 
